@@ -1,0 +1,46 @@
+#include "slicemk_ergodox.dtsi"
+
+/ {
+    kscan0: kscan_composite {
+        compatible = "zmk,kscan-composite";
+        columns = <14>;
+        rows = <7>;
+
+        direct {
+            kscan = <&kscan1>;
+        };
+
+        matrix {
+            kscan = <&kscan2>;
+            row-offset = <1>;
+        };
+    };
+
+    kscan1: kscan_direct {
+        compatible = "zmk,kscan-gpio-direct";
+        input-gpios = <&slicemk_button 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    };
+
+    kscan2: kscan_matrix {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "row2col";
+
+        col-gpios
+            = <&ergodox_a 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&ergodox_a 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&ergodox_a 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&ergodox_a 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&ergodox_a 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&ergodox_a 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&ergodox_a 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+        row-gpios
+            = <&ergodox_a  7 GPIO_ACTIVE_HIGH>
+            , <&ergodox_a  8 GPIO_ACTIVE_HIGH>
+            , <&ergodox_a  9 GPIO_ACTIVE_HIGH>
+            , <&ergodox_a 10 GPIO_ACTIVE_HIGH>
+            , <&ergodox_a 11 GPIO_ACTIVE_HIGH>
+            , <&ergodox_a 12 GPIO_ACTIVE_HIGH>
+            ;
+    };
+};

@@ -1,0 +1,3 @@
+config BOARD_RAYTAC_MDBT50Q_RX_GREEN
+    bool "Raytac MDBT50Q-RX Green"
+    depends on SOC_NRF52833_QIAA

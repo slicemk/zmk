@@ -1,0 +1,14 @@
+config SHIELD_SLICEMK_ERGODOX_DONGLE
+    def_bool $(shields_list_contains,slicemk_ergodox_dongle)
+
+config SHIELD_SLICEMK_ERGODOX_LEFTCENTRAL
+    def_bool $(shields_list_contains,slicemk_ergodox_leftcentral)
+
+config SHIELD_SLICEMK_ERGODOX_RIGHTCENTRAL
+    def_bool $(shields_list_contains,slicemk_ergodox_rightcentral)
+
+config SHIELD_SLICEMK_ERGODOX_LEFTSINGLE
+    def_bool $(shields_list_contains,slicemk_ergodox_leftsingle)
+
+config SHIELD_SLICEMK_ERGODOX_RIGHTSINGLE
+    def_bool $(shields_list_contains,slicemk_ergodox_rightsingle)
