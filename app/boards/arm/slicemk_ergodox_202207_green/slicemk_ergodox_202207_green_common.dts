@@ -1,0 +1,63 @@
+/dts-v1/;
+#include <nordic/nrf52833_qiaa.dtsi>
+
+/ {
+    model = "SliceMK ErgoDox 202207 Green";
+
+    chosen {
+        zephyr,sram = &sram0;
+        zephyr,flash = &flash0;
+        zephyr,code-partition = &code_partition;
+        zephyr,console = &cdc_acm_uart;
+
+        zmk,battery = &vbatt;
+    };
+
+    // Use VDDHDIV5 for battery voltage.
+    vbatt: vbatt {
+        compatible = "zmk,battery-nrf-vddh";
+        label = "VBATT";
+    };
+};
+
+&adc {
+    status = "okay";
+};
+
+&gpiote {
+    status = "okay";
+};
+
+&gpio0 {
+    status = "okay";
+};
+
+&gpio1 {
+    status = "okay";
+};
+
+&usbd {
+    status = "okay";
+    cdc_acm_uart: cdc_acm_uart {
+        compatible = "zephyr,cdc-acm-uart";
+        label = "CDC_ACM_0";
+    };
+};
+
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        code_partition: partition@1000 {
+            label = "code_partition";
+            reg = <0x00001000 0x0006c000>;
+        };
+
+        storage_partition: partition@6d000 {
+            label = "storage";
+            reg = <0x0006d000 0x00007000>;
+        };
+    };
+};

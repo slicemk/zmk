@@ -1,0 +1,3 @@
+config BOARD_NORDIC_NRF52840_DONGLE_SLICEMK
+    bool "Nordic nRF52840 Dongle SliceMK"
+    depends on SOC_NRF52840_QIAA

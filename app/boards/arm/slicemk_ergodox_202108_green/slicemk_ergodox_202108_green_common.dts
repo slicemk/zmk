@@ -1,0 +1,80 @@
+/dts-v1/;
+#include <nordic/nrf52833_qiaa.dtsi>
+
+/ {
+    model = "SliceMK ErgoDox 202108 Green";
+
+    chosen {
+        zephyr,sram = &sram0;
+        zephyr,flash = &flash0;
+        zephyr,code-partition = &code_partition;
+        zephyr,console = &cdc_acm_uart;
+        zmk,battery = &vbatt;
+    };
+
+    leds {
+        compatible = "gpio-leds";
+        led0: led0 {
+            gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>;
+            label = "User LED";
+        };
+    };
+
+    vbatt: VBATT {
+        compatible = "zmk,battery-voltage-divider";
+        label = "VBATT";
+        io-channels = <&adc (0x0d - 1)>;
+        output-ohms = <33>;
+        full-ohms = <175>;
+    };
+
+    slicemk_button: slicemk_button {
+        compatible = "slicemk-button";
+        #gpio-cells = <2>;
+        gpio-map-mask = <0xffffffff 0xffffffc0>;
+        gpio-map-pass-thru = <0 0x3f>;
+        gpio-map = <0 0 &gpio0 14 0>;
+    };
+};
+
+&adc {
+    status = "okay";
+};
+
+&gpiote {
+    status = "okay";
+};
+
+&gpio0 {
+    status = "okay";
+};
+
+&gpio1 {
+    status = "okay";
+};
+
+&usbd {
+    status = "okay";
+    cdc_acm_uart: cdc_acm_uart {
+        compatible = "zephyr,cdc-acm-uart";
+        label = "CDC_ACM_0";
+    };
+};
+
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        code_partition: partition@1000 {
+            label = "code_partition";
+            reg = <0x00001000 0x0006c000>;
+        };
+
+        storage_partition: partition@6d000 {
+            label = "storage";
+            reg = <0x0006d000 0x00007000>;
+        };
+    };
+};

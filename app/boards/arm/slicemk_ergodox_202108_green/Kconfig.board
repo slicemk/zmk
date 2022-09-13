@@ -1,0 +1,7 @@
+config BOARD_SLICEMK_ERGODOX_202108_GREEN_LEFT
+    bool "SliceMK ErgoDox 202108 Green Left"
+    depends on SOC_NRF52833_QIAA
+
+config BOARD_SLICEMK_ERGODOX_202108_GREEN_RIGHT
+    bool "SliceMK ErgoDox 202108 Green Right"
+    depends on SOC_NRF52833_QIAA
