@@ -1,0 +1,66 @@
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
+
+/ {
+    model = "Raytac MDBT50Q-RX";
+
+    chosen {
+        zephyr,code-partition = &code_partition;
+        zephyr,sram = &sram0;
+        zephyr,flash = &flash0;
+        zephyr,console = &cdc_acm_uart;
+    };
+
+    // Define user button.
+    slicemk_button: slicemk_button {
+        compatible = "slicemk-button";
+        #gpio-cells = <2>;
+        gpio-map-mask = <0xffffffff 0xffffffc0>;
+        gpio-map-pass-thru = <0 0x3f>;
+        gpio-map = <0 0 &gpio0 15 0>;
+    };
+};
+
+&adc {
+    status = "okay";
+};
+
+&gpiote {
+    status = "okay";
+};
+
+&gpio0 {
+    status = "okay";
+};
+
+&gpio1 {
+    status = "okay";
+};
+
+&usbd {
+    status = "okay";
+    cdc_acm_uart: cdc_acm_uart {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
+
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        // Application starts at 0x1000 after the MBR.
+        code_partition: partition@1000 {
+            reg = <0x00001000 0x000ec000>;
+        };
+
+        // Define storage partition before the bootloader, which starts at
+        // 0xf4000. Only 7 pages is allocated for storage since that's the
+        // default on the older Adafruit bootloader that these dongles are
+        // preloaded with.
+        storage_partition: partition@ed000 {
+            reg = <0x000ed000 0x00007000>;
+        };
+    };
+};

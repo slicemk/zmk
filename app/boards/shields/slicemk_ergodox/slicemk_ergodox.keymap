@@ -1,0 +1,36 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+        layer_0 {
+            bindings = <
+    &bootloader
+    &kp GRAV   &kp NUM_1  &kp NUM_2  &kp NUM_3  &kp NUM_4  &kp NUM_5  &kp PRSC   &trans     &kp NUM_6  &kp NUM_7  &kp NUM_8  &kp NUM_9  &kp NUM_0  &bootloader
+    &kp TAB    &kp Q      &kp W      &kp E      &kp R      &kp T      &kp CLCK   &kp M_MUTE &kp Y      &kp U      &kp I      &kp O      &kp P      &kp BSLH
+    &kp ESC    &kp A      &kp S      &kp D      &kp F      &kp G                            &kp H      &kp J      &kp K      &kp L      &kp SCLN   &kp BKSP
+    &mo 2      &kp Z      &kp X      &kp C      &kp V      &kp B      &kp M_VOLD &kp M_VOLU &kp N      &kp M      &kp CMMA   &kp DOT    &kp FSLH   &mo 2
+    &trans     &trans     &trans     &kp LARW   &kp UARW                                               &kp DARW   &kp RARW   &kp RALT   &trans     &trans
+                                                           &kp DEL    &kp HOME   &kp END    &kp INS
+                                                &kp SPC    &kp LCTL   &kp PGUP   &kp PGDN   &kp LSFT   &kp RET
+                                                                      &kp LGUI   &mo 1
+            >;
+        };
+        layer_1 {
+            bindings = <
+    &bootloader
+    &none      &none      &none      &none      &none      &none      &none      &none      &none      &none      &none      &none      &none      &bootloader
+    &none      &kp F1     &kp F2     &kp F3     &kp F4     &none      &none      &none      &none      &none      &none      &none      &none      &out OUT_USB
+    &none      &kp F5     &kp F6     &kp F7     &kp F8     &none                            &none      &none      &none      &none      &none      &out OUT_BLE
+    &none      &kp F9     &kp F10    &kp F11    &kp F12    &none      &none      &none      &none      &none      &none      &none      &none      &out OUT_TOG
+    &none      &none      &none      &none      &none                                                  &none      &none      &none      &none      &bt BT_CLR
+                                                           &none      &none      &none      &none
+                                                &none      &none      &none      &none      &none      &none
+                                                                      &none      &none
+            >;
+        };
+    };
+};
