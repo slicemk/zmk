@@ -1,0 +1,19 @@
+if BOARD_SLICEMK_1551USB3_MS88SFA_BLUE
+
+config BOARD
+    default "SliceMK 1551USB3 MS88SFA Blue"
+
+if USB
+
+config USB_NRFX
+    default y
+
+config USB_DEVICE_STACK
+    default y
+
+endif # USB
+
+config BT_CTLR
+    default BT
+
+endif # BOARD_SLICEMK_1551USB3_MS88SFA_BLUE

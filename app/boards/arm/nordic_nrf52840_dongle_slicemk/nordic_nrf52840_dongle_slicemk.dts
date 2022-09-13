@@ -1,0 +1,88 @@
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
+
+/ {
+    model = "Nordic nRF52840 Dongle SliceMK";
+
+    chosen {
+        zephyr,code-partition = &code_partition;
+        zephyr,sram = &sram0;
+        zephyr,flash = &flash0;
+        zephyr,console = &cdc_acm_uart;
+    };
+
+    // Define GPIOs for 202202 keyboard matrix.
+    ergodox_a: ergodox_a {
+        compatible = "ergodox-a";
+        #gpio-cells = <2>;
+        gpio-map-mask = <0xffffffff 0xffffffc0>;
+        gpio-map-pass-thru = <0 0x3f>;
+        gpio-map
+            = <0 0 &gpio0 17 0>
+            , <1 0 &gpio0 20 0>
+            , <2 0 &gpio0 22 0>
+            , <3 0 &gpio0 24 0>
+            , <4 0 &gpio1 0 0>
+            , <5 0 &gpio0 9 0>
+            , <6 0 &gpio0 10 0>
+            , <7 0 &gpio0 31 0>
+            , <8 0 &gpio0 29 0>
+            , <9 0 &gpio0 2 0>
+            , <10 0 &gpio1 15 0>
+            , <11 0 &gpio1 13 0>
+            , <12 0 &gpio1 10 0>
+            ;
+    };
+
+    // Define user button.
+    slicemk_button: slicemk_button {
+        compatible = "slicemk-button";
+        #gpio-cells = <2>;
+        gpio-map-mask = <0xffffffff 0xffffffc0>;
+        gpio-map-pass-thru = <0 0x3f>;
+        gpio-map = <0 0 &gpio1 6 0>;
+    };
+};
+
+&adc {
+    status = "okay";
+};
+
+&gpiote {
+    status = "okay";
+};
+
+&gpio0 {
+    status = "okay";
+};
+
+&gpio1 {
+    status = "okay";
+};
+
+&usbd {
+    status = "okay";
+    cdc_acm_uart: cdc_acm_uart {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
+
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        // Application starts at 0x1000 after the MBR.
+        code_partition: partition@1000 {
+            reg = <0x00001000 0x000e9000>;
+        };
+
+        // Define storage partition before the bootloader, which starts at
+        // 0xf4000. The storage partition has been 10 pages since Adafruit
+        // bootloader version 0.6.0.
+        storage_partition: partition@ea000 {
+            reg = <0x000ea000 0x0000a000>;
+        };
+    };
+};
