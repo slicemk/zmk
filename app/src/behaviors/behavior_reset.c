@@ -13,6 +13,7 @@
 #include <drivers/behavior.h>
 
 #include <zmk/behavior.h>
+#include <dt-bindings/zmk/reset.h>
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -50,3 +51,16 @@ static const struct behavior_driver_api behavior_reset_driver_api = {
 DT_INST_FOREACH_STATUS_OKAY(RST_INST)
 
 #endif /* DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT) */
+
+static int sysoff_init_prekernel(const struct device *dev) {
+#ifdef CONFIG_SOC_SERIES_NRF52X
+    uint32_t const gpregret = NRF_POWER->GPREGRET;
+    if (gpregret == RST_SYSOFF) {
+        NRF_POWER->GPREGRET = 0;
+        NRF_POWER->SYSTEMOFF = 1;
+    }
+#endif
+    return 0;
+}
+
+SYS_INIT(sysoff_init_prekernel, PRE_KERNEL_1, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT);
