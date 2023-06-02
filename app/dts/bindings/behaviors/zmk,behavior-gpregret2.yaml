@@ -1,0 +1,10 @@
+description: SliceMK GPREGRET2 Behavior
+
+compatible: "zmk,behavior-gpregret2"
+
+include: zero_param.yaml
+
+properties:
+  type:
+    type: int
+    default: 0

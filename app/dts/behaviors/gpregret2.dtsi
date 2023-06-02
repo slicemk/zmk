@@ -1,0 +1,11 @@
+#include <dt-bindings/zmk/gpregret2.h>
+
+/ {
+    behaviors {
+        sys_off: behavior_gpregret2_sysoff {
+            compatible = "zmk,behavior-gpregret2";
+            type = <GPREGRET2_SYSOFF>;
+            #binding-cells = <0>;
+        };
+    };
+};
