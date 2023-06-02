@@ -20,5 +20,11 @@
             type = <RST_UF2>;
             #binding-cells = <0>;
         };
+
+        sys_off: behavior_reset_sysoff {
+            compatible = "zmk,behavior-reset";
+            type = <RST_SYSOFF>;
+            #binding-cells = <0>;
+        };
     };
 };
