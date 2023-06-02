@@ -22,5 +22,11 @@
             #binding-cells = <0>;
             display-name = "Bootloader";
         };
+
+        sys_off: behavior_reset_sysoff {
+            compatible = "zmk,behavior-reset";
+            type = <RST_SYSOFF>;
+            #binding-cells = <0>;
+        };
     };
 };
