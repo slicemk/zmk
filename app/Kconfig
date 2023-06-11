@@ -518,8 +518,11 @@ config ZMK_USB_LOGGING
 
 if ZMK_USB_LOGGING
 
+# Suppress USB CDC ACM "ring buffer full" info messages. ZMK default "off" is
+# broken in Zephyr 3.2 (but fine in Zephyr 3.4). See
+# https://github.com/zmkfirmware/zmk/issues/1832.
 choice USB_CDC_ACM_LOG_LEVEL_CHOICE
-    default USB_CDC_ACM_LOG_LEVEL_OFF
+    default USB_CDC_ACM_LOG_LEVEL_WRN
 endchoice
 
 choice USB_DRIVER_LOG_LEVEL_CHOICE
