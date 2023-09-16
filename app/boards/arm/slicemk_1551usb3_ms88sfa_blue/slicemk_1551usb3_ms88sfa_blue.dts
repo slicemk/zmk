@@ -1,0 +1,102 @@
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
+
+/ {
+    model = "SliceMK 1551USB3 MS88SFA Blue";
+
+    chosen {
+        zephyr,code-partition = &code_partition;
+        zephyr,sram = &sram0;
+        zephyr,flash = &flash0;
+        zephyr,console = &cdc_acm_uart;
+
+        zmk,battery = &vbatt;
+        zmk,backlight = &backlight;
+    };
+
+    // Define PA/LNA.
+    nrf_radio_fem: fem {
+        compatible = "generic-fem-two-ctrl-pins";
+        ctx-gpios = <&gpio1 6 0>;
+        ctx-settle-time-us = <1>;
+        crx-gpios = <&gpio1 4 0>;
+        crx-settle-time-us = <1>;
+    };
+
+    vbatt: vbatt {
+        compatible = "zmk,battery-voltage-divider";
+        io-channels = <&adc 6>;
+        output-ohms = <680>;
+        full-ohms = <(680 + 680)>;
+    };
+
+    // The dongle doesn't have a button beside the reset button but ZMK needs
+    // something to be defined for kscan. A pin that is not broken out is
+    // specified here to avoid conflicting with custom user integration using
+    // the breakout pins.
+    slicemk_button: slicemk_button {
+        compatible = "slicemk-button";
+        #gpio-cells = <2>;
+        gpio-map-mask = <0xffffffff 0xffffffc0>;
+        gpio-map-pass-thru = <0 0x3f>;
+        gpio-map = <0 0 &gpio1 1 0>;
+    };
+
+    // Use backlight to control TP4056 charger.
+    backlight: gpioleds {
+        compatible = "gpio-leds";
+        gpio_led_0 {
+            gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+        };
+    };
+};
+
+&radio {
+    fem = <&nrf_radio_fem>;
+};
+
+&adc {
+    status = "okay";
+};
+
+&gpiote {
+    status = "okay";
+};
+
+&gpio0 {
+    status = "okay";
+};
+
+&gpio1 {
+    status = "okay";
+};
+
+&usbd {
+    status = "okay";
+    cdc_acm_uart: cdc_acm_uart {
+        compatible = "zephyr,cdc-acm-uart";
+        label = "CDC_ACM_0";
+    };
+};
+
+&flash0 {
+    partitions {
+        compatible = "fixed-partitions";
+        #address-cells = <1>;
+        #size-cells = <1>;
+
+        // Application starts at 0x1000 after the MBR.
+        code_partition: partition@1000 {
+            label = "code_partition";
+            reg = <0x00001000 0x000e9000>;
+        };
+
+        // Define storage partition before the bootloader, which starts at
+        // 0xf4000. The storage partition has been 10 pages since Adafruit
+        // bootloader version 0.6.0.
+        storage_partition: partition@ea000 {
+            label = "storage";
+            reg = <0x000ea000 0x0000a000>;
+        };
+    };
+};
