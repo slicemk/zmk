@@ -1,0 +1,11 @@
+/ {
+    behaviors {
+        /omit-if-no-ref/ mmv: mouse_move {
+            compatible = "zmk,behavior-mouse-move";
+            #binding-cells = <1>;
+            delay-ms = <0>;
+            time-to-max-speed-ms = <300>;
+            acceleration-exponent = <1>;
+        };
+    };
+};
