@@ -8,6 +8,8 @@ rsource "boards/shields/*/Kconfig.defconfig"
 rsource "boards/shields/*/Kconfig.shield"
 rsource "boards/Kconfig"
 
+rsource "Kconfig.slicemk"
+
 mainmenu "ZMK Firmware"
 
 menu "ZMK"
