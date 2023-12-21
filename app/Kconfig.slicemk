@@ -1,0 +1,14 @@
+config MAIN_STACK_SIZE
+    default 2048
+
+config SYSTEM_WORKQUEUE_STACK_SIZE
+    default 2048
+
+config ZMK_BEHAVIORS_QUEUE_SIZE
+    default 512
+
+config ZMK_BLE_THREAD_STACK_SIZE
+    default 2048
+
+config ZMK_SPLIT_BLE_CENTRAL_SPLIT_RUN_STACK_SIZE
+    default 2048
