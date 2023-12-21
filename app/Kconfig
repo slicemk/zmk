@@ -1,6 +1,8 @@
 # Copyright (c) 2020 The ZMK Contributors
 # SPDX-License-Identifier: MIT
 
+rsource "Kconfig.slicemk"
+
 mainmenu "ZMK Firmware"
 
 menu "ZMK"
