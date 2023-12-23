@@ -176,4 +176,4 @@ static int zmk_peripheral_ble_init(const struct device *_arg) {
     return 0;
 }
 
-SYS_INIT(zmk_peripheral_ble_init, APPLICATION, CONFIG_ZMK_BLE_INIT_PRIORITY);
+SYS_INIT(zmk_peripheral_ble_init, APPLICATION, CONFIG_ZMK_SPLIT_INIT_PRIORITY);
