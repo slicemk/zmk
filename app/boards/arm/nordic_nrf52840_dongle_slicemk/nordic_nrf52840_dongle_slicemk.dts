@@ -11,12 +11,6 @@
         zephyr,console = &cdc_acm_uart;
     };
 
-    // There is no battery so make pretend with VDDHDIV5.
-    vbatt {
-        compatible = "zmk,battery-nrf-vddh";
-        label = "BATTERY";
-    };
-
     // Define GPIOs for 202202 keyboard matrix.
     ergodox_a: ergodox_a {
         compatible = "ergodox-a";
