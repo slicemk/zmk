@@ -64,7 +64,6 @@
     status = "okay";
     cdc_acm_uart: cdc_acm_uart {
         compatible = "zephyr,cdc-acm-uart";
-        label = "CDC_ACM_0";
     };
 };
 
@@ -76,7 +75,6 @@
 
         // Application starts at 0x1000 after the MBR.
         code_partition: partition@1000 {
-            label = "code_partition";
             reg = <0x00001000 0x000e9000>;
         };
 
@@ -84,7 +82,6 @@
         // 0xf4000. The storage partition has been 10 pages since Adafruit
         // bootloader version 0.6.0.
         storage_partition: partition@ea000 {
-            label = "storage";
             reg = <0x000ea000 0x0000a000>;
         };
     };

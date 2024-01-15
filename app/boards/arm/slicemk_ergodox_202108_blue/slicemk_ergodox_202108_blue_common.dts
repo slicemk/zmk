@@ -16,13 +16,11 @@
         compatible = "gpio-leds";
         led0: led0 {
             gpios = <&gpio0 10 GPIO_ACTIVE_HIGH>;
-            label = "User LED";
         };
     };
 
-    vbatt: VBATT {
+    vbatt: vbatt {
         compatible = "zmk,battery-voltage-divider";
-        label = "VBATT";
         io-channels = <&adc (0x0d - 1)>;
         output-ohms = <33>;
         full-ohms = <175>;
@@ -57,7 +55,6 @@
     status = "okay";
     cdc_acm_uart: cdc_acm_uart {
         compatible = "zephyr,cdc-acm-uart";
-        label = "CDC_ACM_0";
     };
 };
 
@@ -68,12 +65,10 @@
         #size-cells = <1>;
 
         code_partition: partition@1000 {
-            label = "code_partition";
             reg = <0x00001000 0x000e9000>;
         };
 
         storage_partition: partition@ea000 {
-            label = "storage";
             reg = <0x000ea000 0x0000a000>;
         };
     };

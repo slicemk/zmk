@@ -41,7 +41,6 @@
     status = "okay";
     cdc_acm_uart: cdc_acm_uart {
         compatible = "zephyr,cdc-acm-uart";
-        label = "CDC_ACM_0";
     };
 };
 
@@ -53,7 +52,6 @@
 
         // Application starts at 0x1000 after the MBR.
         code_partition: partition@1000 {
-            label = "code_partition";
             reg = <0x00001000 0x000ec000>;
         };
 
@@ -62,7 +60,6 @@
         // default on the older Adafruit bootloader that these dongles are
         // preloaded with.
         storage_partition: partition@ed000 {
-            label = "storage";
             reg = <0x000ed000 0x00007000>;
         };
     };

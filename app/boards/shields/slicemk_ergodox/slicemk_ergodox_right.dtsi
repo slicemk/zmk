@@ -3,7 +3,6 @@
 / {
     kscan0: kscan_composite {
         compatible = "zmk,kscan-composite";
-        label = "KSCAN0";
         columns = <14>;
         rows = <7>;
 
@@ -20,13 +19,11 @@
 
     kscan1: kscan_direct {
         compatible = "zmk,kscan-gpio-direct";
-        label = "KSCAN1";
         input-gpios = <&slicemk_button 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
     };
 
     kscan2: kscan_matrix {
         compatible = "zmk,kscan-gpio-matrix";
-        label = "KSCAN2";
         diode-direction = "row2col";
 
         col-gpios

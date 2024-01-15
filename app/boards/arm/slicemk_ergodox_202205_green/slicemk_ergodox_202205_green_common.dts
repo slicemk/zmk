@@ -17,14 +17,12 @@
         compatible = "gpio-leds";
         led0: led0 {
             gpios = <&gpio0 25 GPIO_ACTIVE_HIGH>;
-            label = "User LED";
         };
     };
 
     // Use VDDHDIV5 for battery voltage.
     vbatt: vbatt {
         compatible = "zmk,battery-nrf-vddh";
-        label = "VBATT";
     };
 
     slicemk_button: slicemk_button {
@@ -56,7 +54,6 @@
     status = "okay";
     cdc_acm_uart: cdc_acm_uart {
         compatible = "zephyr,cdc-acm-uart";
-        label = "CDC_ACM_0";
     };
 };
 
@@ -67,12 +64,10 @@
         #size-cells = <1>;
 
         code_partition: partition@1000 {
-            label = "code_partition";
             reg = <0x00001000 0x0006c000>;
         };
 
         storage_partition: partition@6d000 {
-            label = "storage";
             reg = <0x0006d000 0x00007000>;
         };
     };
