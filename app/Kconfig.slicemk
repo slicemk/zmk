@@ -12,3 +12,8 @@ config ZMK_BLE_THREAD_STACK_SIZE
 
 config ZMK_SPLIT_CENTRAL_SPLIT_RUN_STACK_SIZE
     default 2048
+
+# TODO TODO TODO not clear if it will be enabled globally once mouse keys is
+# included in ZMK by default. for now this makes sense.
+config ZMK_MOUSE
+	default y
