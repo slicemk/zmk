@@ -12,3 +12,7 @@ config ZMK_BLE_THREAD_STACK_SIZE
 
 config ZMK_SPLIT_CENTRAL_SPLIT_RUN_STACK_SIZE
     default 2048
+
+# Enable mouse emulation support globally.
+config ZMK_POINTING
+    default y
