@@ -10,25 +10,29 @@ manifest:
       revision: v3.5.0+zmk-fixes
       clone-depth: 1
       import:
-        name-blocklist:
-          - ci-tools
-          - hal_altera
-          - hal_cypress
-          - hal_infineon
-          - hal_microchip
-          - hal_nxp
-          - hal_openisa
-          - hal_silabs
-          - hal_xtensa
-          - hal_st
-          - hal_ti
-          - loramac-node
-          - mcuboot
-          - mcumgr
-          - net-tools
-          - openthread
-          - edtt
-          - trusted-firmware-m
+        name-whitelist:
+          # Zephyr modules for building firmware
+          - cmsis
+          - hal_nordic
+          - hal_rpi_pico
+          - lvgl
+          - segger
+          - tinycrypt
+          - zcbor
+          # Babblesim modules for testing
+          - bsim
+          - babblesim_base
+          - babblesim_ext_2G4_libPhyComv1
+          - babblesim_ext_2G4_phy_v1
+          - babblesim_ext_2G4_channel_NtNcable
+          - babblesim_ext_2G4_channel_multiatt
+          - babblesim_ext_2G4_modem_magic
+          - babblesim_ext_2G4_modem_BLE_simple
+          - babblesim_ext_2G4_device_burst_interferer
+          - babblesim_ext_2G4_device_WLAN_actmod
+          - babblesim_ext_2G4_device_playback
+          - babblesim_ext_libCryptov1
+          - nrf_hw_models
     - name: nanopb
       revision: 8c60555d6277a0360c876bd85d491fc4fb0cd74a
       path: modules/lib/nanopb
