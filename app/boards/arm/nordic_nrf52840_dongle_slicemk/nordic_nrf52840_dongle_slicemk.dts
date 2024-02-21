@@ -60,6 +60,11 @@
     status = "okay";
 };
 
+&uicr {
+	gpio-as-nreset;
+	nfct-pins-as-gpios;
+};
+
 &usbd {
     status = "okay";
     cdc_acm_uart: cdc_acm_uart {
