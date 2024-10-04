@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.13.1)
 
+# This workaround is needed until https://github.com/zmkfirmware/zephyr/pull/35
+# or https://github.com/zephyrproject-rtos/zephyr/pull/78200 is merged.
+add_compile_definitions(PICO_XOSC_STARTUP_DELAY_MULTIPLIER=64)
+
 set(CONFIG_APPLICATION_DEFINED_SYSCALL true)
 
 set(ZEPHYR_BOARD_ALIASES "boards/aliases.cmake")
