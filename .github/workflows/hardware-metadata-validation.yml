@@ -2,11 +2,6 @@ name: Hardware Metadata Validation
 
 on:
   push:
-    paths:
-      - ".github/workflows/hardware-metadata-validation.yml"
-      - "schema/hardware-metadata.schema.json"
-      - "app/boards/**/*.zmk.yml"
-      - "app/scripts/west_commands/metadata.py"
   pull_request:
     paths:
       - ".github/workflows/hardware-metadata-validation.yml"
