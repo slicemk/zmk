@@ -2,11 +2,6 @@ name: BLE Tests
 
 on:
   push:
-    paths:
-      - ".github/workflows/ble-test.yml"
-      - "app/tests/ble/**"
-      - "app/src/**"
-      - "app/run-ble-test.sh"
   pull_request:
     paths:
       - ".github/workflows/ble-test.yml"
