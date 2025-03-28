@@ -35,5 +35,5 @@ CONFIG_BT_CTLR_TX_PWR_PLUS_8=y
 # Include support for Coded PHY.
 CONFIG_BT_CTLR_PHY_CODED=y
 
-# Synthesize 32.768kHz from HFCLK crystal.
-CONFIG_CLOCK_CONTROL_NRF_K32SRC_SYNTH=y
+# Use internal RC for 32.768kHz.
+CONFIG_CLOCK_CONTROL_NRF_K32SRC_RC=y
